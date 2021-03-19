@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
   flutter_hooks: ^0.16.0
   hooks_riverpod: ^0.13.1
+  strings: ^0.2.1
 
 dev_dependencies:
   flutter_test:
@@ -19,7 +20,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/logos/webflow-logo-black.png
+    - assets/fonts/
+    - assets/logos/
+    - assets/icons/
   fonts:
     - family: Graphik
       fonts:
