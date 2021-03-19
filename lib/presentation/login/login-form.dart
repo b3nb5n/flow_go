@@ -1,5 +1,4 @@
-import 'package:flow_go/main/components/button.dart';
-import 'package:flow_go/main/components/text-input.dart';
+import 'package:flow_go/presentation/core/elements/elements.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -14,7 +13,7 @@ class AuthCredentials {
 
   @override
   String toString() {
-    return '{ username: $username, password: $password }';
+    return '{ username: \'$username\', password: \'$password\' }';
   }
 }
 
@@ -24,9 +23,7 @@ class LoginForm extends HookWidget {
     final authCredentials = useState(AuthCredentials());
 
     return Container(
-      padding: EdgeInsets.only(
-        top: 32,
-      ),
+      padding: EdgeInsets.only(top: 32),
       child: Column(
         children: [
           TextInput(

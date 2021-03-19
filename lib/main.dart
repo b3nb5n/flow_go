@@ -1,7 +1,7 @@
-import 'package:flow_go/pallette.dart';
+import 'package:flow_go/presentation/pallette.dart';
 import 'package:flutter/material.dart';
 
-import 'main/screens.dart';
+import 'presentation/screens.dart';
 
 void main() => runApp(App());
 

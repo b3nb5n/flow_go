@@ -20,7 +20,7 @@ class TextLink extends StatelessWidget {
       child: Text(
         label,
         style: TextStyle(
-          fontSize: 12,
+          fontSize: 14,
           fontWeight: FontWeight.w300,
           color: WebflowPallette.neutral[700],
           decoration: TextDecoration.underline,

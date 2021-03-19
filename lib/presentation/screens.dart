@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../pallette.dart';
+import 'pallette.dart';
 
-export 'screens/login.dart';
+export 'login/login-screen.dart';
 
 class Screen extends StatelessWidget {
   final Widget screen;

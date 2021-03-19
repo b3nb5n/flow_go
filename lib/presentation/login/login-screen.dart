@@ -1,5 +1,5 @@
-import 'package:flow_go/main/components/text-link.dart';
-import 'package:flow_go/main/screens/login/form.dart';
+import 'package:flow_go/presentation/core/elements/elements.dart';
+import 'package:flow_go/presentation/login/login-form.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
