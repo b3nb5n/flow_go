@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../data/utils/string-casing.dart';
 import '../../pallette.dart';
 
 class Button extends StatelessWidget {
@@ -27,7 +28,7 @@ class Button extends StatelessWidget {
         handlePressed();
       },
       child: Text(
-        label,
+        label.titleCase(),
         style: Theme.of(context).textTheme.button,
       ),
     );

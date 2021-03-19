@@ -1,6 +1,6 @@
-import 'package:flow_go/presentation/pallette.dart';
 import 'package:flutter/material.dart';
 
+import 'presentation/pallette.dart';
 import 'presentation/screens.dart';
 
 void main() => runApp(App());
@@ -27,54 +27,45 @@ class App extends StatelessWidget {
               color: WebflowPallette.neutral[900],
               fontWeight: FontWeight.w500,
               fontSize: 50,
-              height: 1.1,
             ),
             headline2: TextStyle(
               color: WebflowPallette.neutral[900],
               fontWeight: FontWeight.w500,
               fontSize: 38,
-              height: 1.2,
             ),
             headline3: TextStyle(
               color: WebflowPallette.neutral[900],
               fontWeight: FontWeight.w500,
               fontSize: 32,
-              height: 1.3,
             ),
             headline4: TextStyle(
               color: WebflowPallette.neutral[900],
               fontWeight: FontWeight.w500,
               fontSize: 20,
-              height: 1.2,
             ),
             headline5: TextStyle(
               color: WebflowPallette.neutral[900],
               fontWeight: FontWeight.w500,
               fontSize: 17,
-              height: 1.2,
             ),
             headline6: TextStyle(
               fontFamily: 'Roboto',
               color: WebflowPallette.neutral[900],
               fontWeight: FontWeight.w500,
               fontSize: 15,
-              height: 1.3,
             ),
             bodyText1: TextStyle(
               color: WebflowPallette.neutral[900],
               fontSize: 16,
-              height: 1.7,
             ),
             bodyText2: TextStyle(
               color: WebflowPallette.neutral[900],
               fontSize: 15,
-              height: 1.6,
             ),
             caption: TextStyle(
               fontFamily: 'Roboto',
               color: WebflowPallette.neutral[900],
               fontSize: 10,
-              height: 1.3,
             ),
             button: TextStyle(
               color: WebflowPallette.neutral,
@@ -87,7 +78,8 @@ class App extends StatelessWidget {
         ),
         initialRoute: '/login',
         routes: {
-          '/login': (context) => Screen(Login()),
+          '/login': (_) => LogInScreen(),
+          '/create-account': (_) => CreateAccountScreen(),
         },
       ),
     );

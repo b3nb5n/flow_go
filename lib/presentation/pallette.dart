@@ -23,4 +23,6 @@ class WebflowPallette {
       900: Color(0xFF000000),
     },
   );
+
+  static const error = MaterialColor(0xFFF72A2A, {});
 }

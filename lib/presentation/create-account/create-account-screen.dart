@@ -1,27 +1,23 @@
+import 'package:flow_go/presentation/create-account/create-account-form.dart';
 import 'package:flutter/material.dart';
 
 import '../core/elements/elements.dart';
 import '../screens.dart';
-import 'login-form.dart';
 
-class LogInScreen extends StatelessWidget {
+class CreateAccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AuthScreen(
-      title: 'log into my account',
+      title: 'Start editing for free',
       children: [
-        LoginForm(),
+        CreateAccountForm(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextLink(
-              route: '/create-account',
-              label: 'Dont have an account?',
+              route: '/login',
+              label: 'Already have an account?',
             ),
-            TextLink(
-              route: '/reset-password',
-              label: 'Forgot password?',
-            )
           ],
         )
       ],

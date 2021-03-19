@@ -1,6 +1,7 @@
-import 'package:flow_go/presentation/core/elements/elements.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+
+import '../core/elements/elements.dart';
 
 class AuthCredentials {
   String username;

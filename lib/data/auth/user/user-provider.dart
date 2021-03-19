@@ -33,11 +33,11 @@ class UserNotifier extends ChangeNotifier implements User {
   }
 
   Map<String, String> toJSON() => {
-    'firstName': firstName,
-    'lastName': lastName,
-    'email': email,
-    'password': password,
-  };
+        'firstName': firstName,
+        'lastName': lastName,
+        'email': email,
+        'password': password,
+      };
 
   String? operator [](String field) {
     final json = toJSON();
@@ -59,10 +59,14 @@ class UserNotifier extends ChangeNotifier implements User {
     fields.forEach((field) {
       final value = this[field];
       if (value == null || value.isEmpty) {
-        errors[field] = '$field is re'
+        errors[field] = '$field is required';
       }
-    })
 
-    return errors;
+      if (!_validators[field]!.hasMatch(value!)) {
+        errors[field] = 'invalid $field';
+      }
+    });
+
+    return UserErrors.fromJSON(errors);
   }
 }
