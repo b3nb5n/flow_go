@@ -1,5 +1,6 @@
-import 'package:flow_go/main.dart';
 import 'package:flutter/material.dart';
+
+import '../pallette.dart';
 
 export 'screens/login.dart';
 

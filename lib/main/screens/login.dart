@@ -27,9 +27,11 @@ class Login extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextLink(
+                    route: '/sign-up',
                     label: 'Dont have an account?',
                   ),
                   TextLink(
+                    route: '/reset-password',
                     label: 'Forgot password?',
                   )
                 ],
