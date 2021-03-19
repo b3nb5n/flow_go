@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
 
-import '../../main.dart';
+import '../../pallette.dart';
 
 class Button extends StatelessWidget {
   final void Function() handlePressed;
   final String label;
 
-  Button({this.handlePressed, this.label});
+  Button({
+    required this.handlePressed,
+    required this.label,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-      color: WebflowPallette.webflowBlue,
+    return TextButton(
       onPressed: handlePressed,
-      minWidth: double.maxFinite,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(0),
-      ),
-      padding: EdgeInsets.symmetric(
-        vertical: 16,
-        horizontal: 24,
+      style: TextButton.styleFrom(
+        primary: WebflowPallette.webflowBlue,
+        elevation: 0,
+        minimumSize: Size(double.maxFinite, 42),
+        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+        backgroundColor: WebflowPallette.webflowBlue,
+        onSurface: WebflowPallette.neutral,
       ),
       child: Text(
         label,

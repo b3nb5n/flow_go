@@ -1,12 +1,17 @@
-import 'package:flow_go/main.dart';
 import 'package:flutter/material.dart';
 
-class TextInput extends StatefulWidget {
-  final String label;
-  final bool password;
-  final void Function(String value) handleChange;
+import '../../pallette.dart';
 
-  TextInput({this.label, this.handleChange, this.password});
+class TextInput extends StatefulWidget {
+  final String? label;
+  final bool? password;
+  final void Function(String value)? handleChange;
+
+  TextInput({
+    required this.label,
+    required this.handleChange,
+    this.password = false,
+  });
 
   @override
   _TextInputState createState() => _TextInputState();
@@ -50,7 +55,7 @@ class _TextInputState extends State<TextInput> {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.zero,
             borderSide: BorderSide(
-              color: WebflowPallette.neutral[300],
+              color: WebflowPallette.neutral[300]!,
             ),
           ),
           filled: !focused,

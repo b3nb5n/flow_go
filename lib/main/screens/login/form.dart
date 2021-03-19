@@ -3,8 +3,8 @@ import 'package:flow_go/main/components/text-input.dart';
 import 'package:flutter/material.dart';
 
 class AuthData {
-  String username;
-  String password;
+  String? username;
+  String? password;
 
   AuthData({this.username, this.password});
 }

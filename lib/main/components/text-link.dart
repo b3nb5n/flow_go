@@ -1,11 +1,15 @@
-import 'package:flow_go/main.dart';
 import 'package:flutter/material.dart';
+
+import '../../pallette.dart';
 
 class TextLink extends StatelessWidget {
   final String route;
   final String label;
 
-  TextLink({this.route, this.label});
+  TextLink({
+    required this.route,
+    required this.label,
+  });
 
   @override
   Widget build(BuildContext context) {
