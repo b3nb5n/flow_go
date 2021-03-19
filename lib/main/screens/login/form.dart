@@ -1,24 +1,28 @@
 import 'package:flow_go/main/components/button.dart';
 import 'package:flow_go/main/components/text-input.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class AuthData {
-  String? username;
-  String? password;
+class AuthCredentials {
+  String username;
+  String password;
 
-  AuthData({this.username, this.password});
-}
+  AuthCredentials({
+    this.username = '',
+    this.password = '',
+  });
 
-class LoginForm extends StatefulWidget {
   @override
-  _LoginFormState createState() => _LoginFormState();
+  String toString() {
+    return '{ username: $username, password: $password }';
+  }
 }
 
-class _LoginFormState extends State<LoginForm> {
-  AuthData authData = AuthData();
-
+class LoginForm extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    final authCredentials = useState(AuthCredentials());
+
     return Container(
       padding: EdgeInsets.only(
         top: 32,
@@ -27,23 +31,16 @@ class _LoginFormState extends State<LoginForm> {
         children: [
           TextInput(
             label: 'Email or Username',
-            handleChange: (value) {
-              setState(() => authData.username = value);
-            },
+            handleChange: (value) => authCredentials.value.username = value,
           ),
           TextInput(
             label: 'Password',
-            password: true,
-            handleChange: (value) {
-              setState(() => authData.password = value);
-            },
+            obscureText: true,
+            handleChange: (value) => authCredentials.value.password = value,
           ),
           Button(
             label: 'Log In',
-            handlePressed: () {
-              print(authData.username);
-              print(authData.password);
-            },
+            handlePressed: () => print(authCredentials.value),
           )
         ],
       ),

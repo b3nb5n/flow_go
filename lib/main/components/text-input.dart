@@ -1,53 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../pallette.dart';
 
-class TextInput extends StatefulWidget {
-  final String? label;
-  final bool? password;
-  final void Function(String value)? handleChange;
+class TextInput extends HookWidget {
+  final String label;
+  final bool obscureText;
+  final void Function(String value) handleChange;
+  final FocusNode _focus = FocusNode();
 
   TextInput({
     required this.label,
     required this.handleChange,
-    this.password = false,
+    this.obscureText = false,
   });
 
   @override
-  _TextInputState createState() => _TextInputState();
-}
-
-class _TextInputState extends State<TextInput> {
-  final FocusNode _focus = FocusNode();
-  bool focused = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _focus.addListener(_onFocusChange);
-  }
-
-  void _onFocusChange() {
-    setState(() {
-      focused = _focus.hasFocus;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final focused = useState(false);
+
+    useEffect(() {
+      _focus.addListener(() {
+        focused.value = _focus.hasFocus;
+      });
+
+      return () {};
+    });
+
     return Padding(
       padding: EdgeInsets.only(bottom: 12),
       child: TextField(
-        obscureText: widget.password ?? false,
+        obscureText: obscureText,
         focusNode: _focus,
-        onChanged: widget.handleChange,
+        onChanged: handleChange,
         cursorColor: Theme.of(context).textSelectionTheme.cursorColor,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(
             vertical: 12,
             horizontal: 16,
           ),
-          hintText: widget.label,
+          hintText: label,
           border: InputBorder.none,
           disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.zero,
@@ -58,7 +50,7 @@ class _TextInputState extends State<TextInput> {
               color: WebflowPallette.neutral[300]!,
             ),
           ),
-          filled: !focused,
+          filled: !focused.value,
           fillColor: WebflowPallette.neutral[200],
           focusColor: WebflowPallette.neutral,
         ),

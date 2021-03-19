@@ -14,16 +14,18 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: handlePressed,
       style: TextButton.styleFrom(
-        primary: WebflowPallette.webflowBlue,
         elevation: 0,
         minimumSize: Size(double.maxFinite, 42),
         padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
         backgroundColor: WebflowPallette.webflowBlue,
-        onSurface: WebflowPallette.neutral,
       ),
+      onPressed: () {
+        final currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) currentFocus.unfocus();
+        handlePressed();
+      },
       child: Text(
         label,
         style: Theme.of(context).textTheme.button,
