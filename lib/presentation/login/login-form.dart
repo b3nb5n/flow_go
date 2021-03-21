@@ -1,27 +1,14 @@
+import 'package:flow_go/data/auth/user/auth-credentials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../core/elements/elements.dart';
 
-class AuthCredentials {
-  String username;
-  String password;
-
-  AuthCredentials({
-    this.username = '',
-    this.password = '',
-  });
-
-  @override
-  String toString() {
-    return '{ username: \'$username\', password: \'$password\' }';
-  }
-}
-
 class LoginForm extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final authCredentials = useState(AuthCredentials());
+    final errors = useState(AuthCredentialsErrors());
 
     return Container(
       padding: EdgeInsets.only(top: 32),
@@ -29,16 +16,24 @@ class LoginForm extends HookWidget {
         children: [
           TextInput(
             label: 'Email or Username',
-            handleChange: (value) => authCredentials.value.username = value,
+            handleChange: (value) => authCredentials.value.identifier = value,
+            error: errors.value.identifier,
           ),
           TextInput(
             label: 'Password',
             obscureText: true,
             handleChange: (value) => authCredentials.value.password = value,
+            error: errors.value.password,
           ),
           Button(
             label: 'Log In',
-            handlePressed: () => print(authCredentials.value),
+            handlePressed: () {
+              errors.value = authCredentials.value.validate();
+              if (!errors.value.hasErrors) {
+                final userIsValid = authCredentials.value.login();
+                if (userIsValid) Navigator.pushReplacementNamed(context, '/');
+              }
+            },
           )
         ],
       ),

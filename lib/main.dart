@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'presentation/pallette.dart';
 import 'presentation/screens.dart';
@@ -8,14 +9,7 @@ void main() => runApp(App());
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScopeNode currentFocus = FocusScope.of(context);
-
-        if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();
-        }
-      },
+    return ProviderScope(
       child: MaterialApp(
         title: 'Flow Go',
         debugShowCheckedModeBanner: false,
@@ -76,8 +70,9 @@ class App extends StatelessWidget {
             cursorColor: WebflowPallette.neutral[700],
           ),
         ),
-        initialRoute: '/login',
+        initialRoute: '/',
         routes: {
+          '/': (_) => DashboardScreen(),
           '/login': (_) => LogInScreen(),
           '/create-account': (_) => CreateAccountScreen(),
         },

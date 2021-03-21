@@ -1,7 +1,14 @@
 import 'package:flow_go/data/auth/user/user.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:string_ops/string_ops.dart';
 
 class UserNotifier extends ChangeNotifier implements User {
+  UserNotifier._privateConstructor();
+  static final _instance = UserNotifier._privateConstructor();
+  static UserNotifier get instance => _instance;
+
   String _firstName = '';
   String _lastName = '';
   String _email = '';
@@ -13,22 +20,22 @@ class UserNotifier extends ChangeNotifier implements User {
   String get password => _password;
 
   set firstName(String firstName) {
-    _firstName = firstName;
+    _firstName = firstName.trim();
     notifyListeners();
   }
 
   set lastName(String lastName) {
-    _lastName = lastName;
+    _lastName = lastName.trim();
     notifyListeners();
   }
 
   set email(String email) {
-    _email = email;
+    _email = email.trim();
     notifyListeners();
   }
 
   set password(String password) {
-    _password = password;
+    _password = password.trim();
     notifyListeners();
   }
 
@@ -39,34 +46,32 @@ class UserNotifier extends ChangeNotifier implements User {
         'password': password,
       };
 
-  String? operator [](String field) {
-    final json = toJSON();
-    if (json.containsKey(field)) return json[field];
-    return null;
-  }
-
   static final _validators = {
-    'firstName': RegExp(''),
-    'lastName': RegExp(''),
-    'email': RegExp(''),
-    'password': RegExp(''),
+    'firstName': RegExp(r'^\w+$'),
+    'lastName': RegExp(r'^\w+$'),
+    'email': RegExp(r'^\S+@\S+\.\w+$'),
+    'password': RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{10,}$'),
   };
 
   UserErrors validate() {
-    Map<String, String?> errors = {};
-    final fields = _validators.keys.toList();
+    Map<String, String> errors = {};
+    final values = toJSON();
+    final fields = values.keys.toList();
 
     fields.forEach((field) {
-      final value = this[field];
-      if (value == null || value.isEmpty) {
-        errors[field] = '$field is required';
-      }
-
-      if (!_validators[field]!.hasMatch(value!)) {
-        errors[field] = 'invalid $field';
+      final value = values[field];
+      if (value!.isEmpty) {
+        final fieldName = field.convertCasing(CasingFormat.scentenceCase);
+        errors[field] = '$fieldName is required';
+      } else if (!_validators[field]!.hasMatch(value)) {
+        final fieldName = field.convertCasing(CasingFormat.lowerCase);
+        errors[field] = 'Invalid $fieldName';
       }
     });
 
     return UserErrors.fromJSON(errors);
   }
 }
+
+final userNotifierProvider =
+    ChangeNotifierProvider((_) => UserNotifier.instance);

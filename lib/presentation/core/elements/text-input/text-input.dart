@@ -1,53 +1,25 @@
 import 'package:flow_go/presentation/core/elements/text-input/text-input-error.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../pallette.dart';
 
-class TextInput extends HookWidget {
+class TextInput extends StatelessWidget {
   final String label;
-  final bool isRequired;
   final bool obscureText;
-  final RegExp? validator;
+  final String? defaultValue;
+  final String? error;
   final void Function(String value) handleChange;
-  final FocusNode _focus = FocusNode();
 
   TextInput({
     required this.label,
     required this.handleChange,
-    this.isRequired = false,
     this.obscureText = false,
-    this.validator,
+    this.defaultValue,
+    this.error,
   });
-
-  String? value;
-  String? error;
-
-  String? validateInput(String? value) {
-    if (isRequired && (value == null || value.isEmpty)) {
-      return '$label is required';
-    }
-
-    value = value ?? '';
-    if (validator != null && validator!.hasMatch(value)) {
-      return 'invalid $label';
-    }
-
-    return null;
-  }
 
   @override
   Widget build(BuildContext context) {
-    final focused = useState(false);
-
-    useEffect(() {
-      _focus.addListener(() {
-        focused.value = _focus.hasFocus;
-      });
-
-      return () {};
-    });
-
     return Container(
       width: double.maxFinite,
       padding: EdgeInsets.only(bottom: 12),
@@ -56,8 +28,9 @@ class TextInput extends HookWidget {
         children: [
           TextField(
             obscureText: obscureText,
-            focusNode: _focus,
-            onChanged: handleChange,
+            onChanged: (value) {
+              handleChange(value);
+            },
             cursorColor: Theme.of(context).textSelectionTheme.cursorColor,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(
@@ -75,12 +48,14 @@ class TextInput extends HookWidget {
                   color: WebflowPallette.neutral[300]!,
                 ),
               ),
-              filled: !focused.value,
+              filled: true,
               fillColor: WebflowPallette.neutral[200],
               focusColor: WebflowPallette.neutral,
             ),
           ),
-          TextInputError(error: 'Last name is required')
+          if (error != null && error!.isNotEmpty) ...[
+            TextInputError(error: error!)
+          ]
         ],
       ),
     );

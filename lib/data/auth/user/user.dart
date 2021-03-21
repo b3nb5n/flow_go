@@ -18,6 +18,9 @@ class UserErrors {
     this.password,
   });
 
+  bool get hasErrors =>
+      toJSON().values.any((error) => error?.isNotEmpty ?? false);
+
   Map<String, String?> toJSON() => {
         'firstName': firstName,
         'lastName': lastName,
@@ -25,10 +28,10 @@ class UserErrors {
         'password': password,
       };
 
-  factory UserErrors.fromJSON(Map<String, String?> json) => UserErrors(
+  factory UserErrors.fromJSON(Map<String, String> json) => UserErrors(
         firstName: json['firstName']?.toString(),
         lastName: json['lastName']?.toString(),
         email: json['email']?.toString(),
-        password: json['password'].toString(),
+        password: json['password']?.toString(),
       );
 }
