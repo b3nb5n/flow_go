@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:string_ops/string_ops.dart';
 
 import '../core/elements/elements.dart';
 import '../screens.dart';
@@ -8,8 +10,11 @@ class LogInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AuthScreen(
-      title: 'log into my account',
       children: [
+        Text(
+          'log into my account'.convertCasing(CasingFormat.titleCase),
+          style: Theme.of(context).textTheme.headline2,
+        ),
         LoginForm(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

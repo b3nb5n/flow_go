@@ -1,4 +1,4 @@
-import 'package:flow_go/data/auth/user/auth-credentials.dart';
+import 'package:flow_go/data/auth/credentials/auth-credentials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 

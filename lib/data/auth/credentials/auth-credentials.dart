@@ -1,4 +1,5 @@
 import 'package:flow_go/data/auth/user/user-provider.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:string_ops/string_ops.dart';
 
 class AuthCredentials {
