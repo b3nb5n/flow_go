@@ -1,11 +1,14 @@
 import 'package:flow_go/presentation/pallette.dart';
 import 'package:flutter/material.dart';
+import 'package:string_ops/string_ops.dart';
 
 class ScreenHeader extends StatelessWidget {
-  final List<Widget> children;
+  final String? title;
+  final List<Widget>? children;
 
   ScreenHeader({
-    required this.children,
+    this.children,
+    this.title,
   });
 
   @override
@@ -22,7 +25,14 @@ class ScreenHeader extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: children,
+        children: [
+          if (title != null)
+            Text(
+              title!.convertCasing(CasingFormat.titleCase),
+              style: Theme.of(context).textTheme.headline4,
+            ),
+          if (children != null) ...children!,
+        ],
       ),
     );
   }

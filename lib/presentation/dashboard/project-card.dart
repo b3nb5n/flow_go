@@ -1,5 +1,6 @@
 import 'package:flow_go/data/projects/projects.dart';
 import 'package:flow_go/presentation/pallette.dart';
+import 'package:flow_go/presentation/project/project-screen.dart';
 import 'package:flutter/material.dart';
 
 class StatusIcon extends StatelessWidget {
@@ -72,7 +73,14 @@ class ProjectCard extends StatelessWidget {
                       Material(
                         color: Colors.transparent,
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => ProjectScreen(project: project),
+                              ),
+                            );
+                          },
                           splashColor:
                               WebflowPallette.neutral[900]?.withOpacity(0.2),
                         ),

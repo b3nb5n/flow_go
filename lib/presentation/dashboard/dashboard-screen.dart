@@ -17,14 +17,7 @@ class DashboardScreen extends HookWidget {
     }, []);
 
     return Screen(
-      header: ScreenHeader(
-        children: [
-          Text(
-            'Dashboard',
-            style: Theme.of(context).textTheme.headline4,
-          ),
-        ],
-      ),
+      header: ScreenHeader(title: 'Dashboard'),
       children: [
         Flexible(
           child: ListView(

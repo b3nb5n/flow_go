@@ -1,7 +1,6 @@
 import 'package:flow_go/data/auth/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:string_ops/string_ops.dart';
 
 class UserNotifier extends ChangeNotifier implements User {
