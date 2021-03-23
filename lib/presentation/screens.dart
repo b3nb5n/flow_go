@@ -16,12 +16,13 @@ class Screen extends StatelessWidget {
   final Widget? footer;
   final Color? backgroundColor;
 
-  Screen(
-      {required this.children,
-      this.appBar,
-      this.header,
-      this.footer,
-      this.backgroundColor});
+  Screen({
+    required this.children,
+    this.appBar,
+    this.header,
+    this.footer,
+    this.backgroundColor,
+  });
 
   @override
   Widget build(BuildContext context) {
