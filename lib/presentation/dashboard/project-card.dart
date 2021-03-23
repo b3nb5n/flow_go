@@ -12,6 +12,7 @@ class StatusIcon extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 6),
       child: Image(
+        fit: BoxFit.fitHeight,
         image: AssetImage('assets/icons/$name.png'),
       ),
     );
@@ -53,38 +54,75 @@ class ProjectCard extends StatelessWidget {
               color: WebflowPallette.neutral[300],
               border: Border.all(color: WebflowPallette.neutral[300]!),
               borderRadius: BorderRadius.all(
-                Radius.circular(6),
+                Radius.circular(8),
               ),
             ),
             child: Column(
               children: [
-                GestureDetector(
-                  onTap: () {
-                    // TODO: Push to project page
-                  },
-                  child: AspectRatio(
-                    aspectRatio: 1.6,
-                    child: Image(
-                      fit: BoxFit.fill,
-                      image: NetworkImage(project.coverImageUrl),
-                    ),
+                AspectRatio(
+                  aspectRatio: 1.6,
+                  child: Stack(
+                    fit: StackFit.expand,
+                    clipBehavior: Clip.hardEdge,
+                    children: [
+                      Image(
+                        fit: BoxFit.fill,
+                        image: NetworkImage(project.coverImageUrl),
+                      ),
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {},
+                          splashColor:
+                              WebflowPallette.neutral[900]?.withOpacity(0.2),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 AspectRatio(
                   aspectRatio: 8,
                   child: Container(
-                    padding: EdgeInsets.only(left: 12),
+                    padding: EdgeInsets.only(left: 6),
                     color: WebflowPallette.neutral,
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        if (project.published) StatusIcon('published'),
-                        if (!project.published) StatusIcon('not-published'),
-                        if (project.showcased) StatusIcon('showcased'),
-                        if (!project.showcased) StatusIcon('not-showcased'),
-                        if (project.hosting != HostingTeir.none)
-                          StatusIcon(_hostingTeirToIcon(project.hosting)),
-                        if (project.clientBillingEnabled)
-                          StatusIcon('client-billing-enabled'),
+                        Row(
+                          children: [
+                            if (project.published) StatusIcon('published'),
+                            if (!project.published) StatusIcon('not-published'),
+                            if (project.showcased) StatusIcon('showcased'),
+                            if (!project.showcased) StatusIcon('not-showcased'),
+                            if (project.hosting != HostingTeir.none)
+                              StatusIcon(_hostingTeirToIcon(project.hosting)),
+                            if (project.clientBillingEnabled)
+                              StatusIcon('client-billing-enabled'),
+                          ],
+                        ),
+                        AspectRatio(
+                          aspectRatio: 1,
+                          child: Material(
+                            child: InkWell(
+                              onTap: () {},
+                              splashColor: WebflowPallette.neutral[900]
+                                  ?.withOpacity(0.2),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                    left: BorderSide(
+                                      color: WebflowPallette.neutral[300]!,
+                                    ),
+                                  ),
+                                ),
+                                child: Icon(
+                                  Icons.more_horiz,
+                                  color: WebflowPallette.neutral[300],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
