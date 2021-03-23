@@ -1,5 +1,6 @@
-import 'package:flow_go/data/auth/user/user-provider.dart';
 import 'package:string_ops/string_ops.dart';
+
+import '../user/user-provider.dart';
 
 class AuthCredentials {
   String identifier;

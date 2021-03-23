@@ -1,7 +1,8 @@
-import 'package:flow_go/data/projects/projects.dart';
-import 'package:flow_go/presentation/pallette.dart';
-import 'package:flow_go/presentation/project/project-screen.dart';
 import 'package:flutter/material.dart';
+
+import '../../data/projects/projects.dart';
+import '../pallette.dart';
+import '../project/project-screen.dart';
 
 class StatusIcon extends StatelessWidget {
   final String name;

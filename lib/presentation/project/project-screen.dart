@@ -1,7 +1,8 @@
-import 'package:flow_go/data/projects/projects.dart';
-import 'package:flow_go/presentation/core/elements/screen-header.dart';
-import 'package:flow_go/presentation/screens.dart';
 import 'package:flutter/material.dart';
+
+import '../../data/projects/projects.dart';
+import '../core/elements/screen-header.dart';
+import '../screens.dart';
 
 class ProjectScreen extends StatelessWidget {
   final Project project;

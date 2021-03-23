@@ -1,7 +1,7 @@
-import 'package:flow_go/presentation/core/elements/text-input/text-input-error.dart';
 import 'package:flutter/material.dart';
 
 import '../../../pallette.dart';
+import 'text-input-error.dart';
 
 class TextInput extends StatelessWidget {
   final String label;

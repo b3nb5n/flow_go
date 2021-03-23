@@ -1,6 +1,7 @@
-import 'package:flow_go/presentation/pallette.dart';
 import 'package:flutter/material.dart';
 import 'package:string_ops/string_ops.dart';
+
+import '../../pallette.dart';
 
 class ScreenHeader extends StatelessWidget {
   final String? title;

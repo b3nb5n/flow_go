@@ -1,9 +1,9 @@
-import 'package:flow_go/data/auth/user/user-provider.dart';
-import 'package:flow_go/data/auth/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../data/auth/user/user-provider.dart';
+import '../../data/auth/user/user.dart';
 import '../core/elements/elements.dart';
 
 class CreateAccountForm extends HookWidget {

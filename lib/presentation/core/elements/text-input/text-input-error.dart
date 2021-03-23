@@ -1,5 +1,6 @@
-import 'package:flow_go/presentation/pallette.dart';
 import 'package:flutter/material.dart';
+
+import '../../../pallette.dart';
 
 class TextInputError extends StatelessWidget {
   final String error;

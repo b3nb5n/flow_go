@@ -1,7 +1,8 @@
-import 'package:flow_go/data/auth/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:string_ops/string_ops.dart';
+
+import 'user.dart';
 
 class UserNotifier extends ChangeNotifier implements User {
   UserNotifier._privateConstructor();
