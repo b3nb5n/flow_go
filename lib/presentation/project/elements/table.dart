@@ -47,6 +47,7 @@ class WebflowTable extends StatelessWidget {
     TableRow rowBuilder(Map<String, String> item) {
       return TableRow(
         decoration: BoxDecoration(
+          color: WebflowPallette.neutral,
           border: Border(
             top: BorderSide(
               color: WebflowPallette.neutral[300]!,
