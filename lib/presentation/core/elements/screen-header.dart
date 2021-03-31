@@ -4,10 +4,12 @@ import 'package:string_ops/string_ops.dart';
 import '../../pallette.dart';
 
 class ScreenHeader extends StatelessWidget {
+  final Widget? leading;
   final String? title;
   final List<Widget>? children;
 
   ScreenHeader({
+    this.leading,
     this.children,
     this.title,
   });
@@ -25,8 +27,16 @@ class ScreenHeader extends StatelessWidget {
       ),
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          if (leading != null)
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8),
+              child: SizedBox(
+                width: 24,
+                height: 24,
+                child: leading!,
+              ),
+            ),
           if (title != null)
             Text(
               title!.convertCasing(CasingFormat.titleCase),

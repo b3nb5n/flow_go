@@ -15,7 +15,17 @@ class ProjectScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Screen(
-      header: ScreenHeader(title: project.name),
+      header: ScreenHeader(
+        leading: IconButton(
+          padding: EdgeInsets.all(0),
+          iconSize: 20,
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: project.name,
+      ),
       children: [
         Flexible(
           child: ListView(
