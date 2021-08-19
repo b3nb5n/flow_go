@@ -1,11 +1,21 @@
+import 'package:flow_go/presentation/pallette.dart';
+import 'package:flow_go/presentation/project/sections/collections.dart';
+import 'package:flow_go/presentation/project/sections/forms.dart';
+import 'package:flow_go/presentation/project/sections/pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../data/projects/projects.dart';
 import '../core/elements/screen-header.dart';
 import '../screens.dart';
-import 'elements/table.dart';
 
-class ProjectScreen extends StatelessWidget {
+enum ProjectScreenTab {
+  pages,
+  collections,
+  forms,
+}
+
+class ProjectScreen extends HookWidget {
   final Project project;
 
   ProjectScreen({
@@ -14,6 +24,8 @@ class ProjectScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sectionState = useState(ProjectScreenTab.pages);
+
     return Screen(
       header: ScreenHeader(
         leading: IconButton(
@@ -31,17 +43,37 @@ class ProjectScreen extends StatelessWidget {
           child: ListView(
             padding: EdgeInsets.symmetric(vertical: 24),
             children: [
-              WebflowTable(
-                columns: ['name', 'date-created'],
-                items: [
-                  {'name': 'Home', 'date-created': 'Mon, Feb 25, 2019'},
-                  {'name': 'Contact', 'date-created': 'Tue, Dec 10, 2019'},
-                ],
-              ),
+              if (sectionState.value == ProjectScreenTab.pages) PagesSection(),
+              if (sectionState.value == ProjectScreenTab.collections) CollectionsSection(),
+              if (sectionState.value == ProjectScreenTab.forms) FormsSection(),
             ],
           ),
         ),
       ],
+      footer: BottomNavigationBar(
+        currentIndex: sectionState.value.index,
+        selectedItemColor: WebflowPallette.webflowBlue,
+        iconSize: 32,
+        selectedFontSize: 16,
+        showUnselectedLabels: false,
+        onTap: (i) {
+          sectionState.value = ProjectScreenTab.values[i];
+        },
+        items: [
+          BottomNavigationBarItem(
+            label: 'Pages',
+            icon: Icon(Icons.insert_drive_file_outlined),
+          ),
+          BottomNavigationBarItem(
+            label: 'Collections',
+            icon: Icon(Icons.layers_outlined),
+          ),
+          BottomNavigationBarItem(
+            label: 'Forms',
+            icon: Icon(Icons.feed_outlined),
+          )
+        ],
+      ),
     );
   }
 }

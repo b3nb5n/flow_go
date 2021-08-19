@@ -38,6 +38,7 @@ class Screen extends StatelessWidget {
             centerTitle: false,
             elevation: 0,
             leading: IconButton(
+              iconSize: 32,
               icon: Icon(Icons.menu),
               onPressed: () {},
             ),
@@ -47,13 +48,17 @@ class Screen extends StatelessWidget {
             ),
             actions: [
               IconButton(
+                iconSize: 32,
                 icon: Icon(Icons.notifications),
                 onPressed: () {},
               ),
+              Container(width: 6),
               IconButton(
+                iconSize: 32,
                 icon: Icon(Icons.account_circle),
                 onPressed: () {},
-              )
+              ),
+              Container(width: 16)
             ],
           ),
       backgroundColor: backgroundColor ?? WebflowPallette.neutral[100],

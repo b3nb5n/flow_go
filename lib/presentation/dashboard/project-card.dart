@@ -82,8 +82,7 @@ class ProjectCard extends StatelessWidget {
                               ),
                             );
                           },
-                          splashColor:
-                              WebflowPallette.neutral[900]?.withOpacity(0.2),
+                          splashColor: WebflowPallette.neutral[900]?.withOpacity(0.2),
                         ),
                       ),
                     ],
@@ -114,8 +113,7 @@ class ProjectCard extends StatelessWidget {
                           child: Material(
                             child: InkWell(
                               onTap: () {},
-                              splashColor: WebflowPallette.neutral[900]
-                                  ?.withOpacity(0.2),
+                              splashColor: WebflowPallette.neutral[900]?.withOpacity(0.2),
                               child: Container(
                                 decoration: BoxDecoration(
                                   border: Border(

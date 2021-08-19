@@ -34,7 +34,7 @@ class ScreenHeader extends StatelessWidget {
               child: SizedBox(
                 width: 24,
                 height: 24,
-                child: leading!,
+                child: leading,
               ),
             ),
           if (title != null)
